@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Arquitecto en el Aljarafe</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #222;
+      background: #fff;
+    }
+
+    h1, h2, h3, p {
+      margin-top: 0;
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      background: url('foto.jpg') center center / cover no-repeat;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 0 8vw 12vh 8vw;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.28);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 760px;
+      color: #fff;
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 60px;
+      line-height: 1.05;
+      margin-bottom: 14px;
+      font-weight: 700;
+    }
+
+    .subtitle {
+      font-size: 28px;
+      line-height: 1.2;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .subline {
+      font-size: 15px;
+      line-height: 1.5;
+      margin-bottom: 30px;
+      opacity: 0.95;
+      font-weight: 600;
+    }
+
+    /* BOTÓN WHATSAPP */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #25D366;
+      color: #fff;
+      padding: 18px 30px;
+      border-radius: 22px;
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: bold;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.22);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.26);
+    }
+
+    .btn svg {
+      width: 24px;
+      height: 24px;
+      fill: white;
+      flex-shrink: 0;
+    }
+
+    /* TARJETAS SERVICIOS */
+    .services {
+      background: #f5f5f5;
+      padding: 60px 20px;
+    }
+
+    .services h2 {
+      text-align: center;
+      font-size: 42px;
+      margin-bottom: 36px;
+    }
+
+    .grid {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 22px;
+      border-radius: 18px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.07);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 28px rgba(0,0,0,0.10);
+    }
+
+    .icon-box {
+      width: 54px;
+      height: 54px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      font-size: 24px;
+      opacity: 0.95;
+    }
+
+    .green  { background: #e9f7ee; color: #44a648; }
+    .gold   { background: #fff6df; color: #d6a72d; }
+    .blue   { background: #e8f2ff; color: #5d96d8; }
+    .purple { background: #f3eaff; color: #b281d6; }
+
+    .card h3 {
+      margin-bottom: 8px;
+      font-size: 22px;
+      line-height: 1.15;
+    }
+
+    .card p {
+      margin-bottom: 0;
+      color: #555;
+      line-height: 1.45;
+      font-size: 16px;
+    }
+
+    /* PROBLEMAS */
+    .problemas {
+      background: #fff;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .problemas h2 {
+      font-size: 34px;
+      margin-bottom: 24px;
+    }
+
+    .lista {
+      max-width: 820px;
+      margin: 0 auto 20px auto;
+      text-align: left;
+    }
+
+    .lista p {
+      font-size: 18px;
+      margin: 12px 0;
+    }
+
+    /* DETALLE */
+    .detalle {
+      background: #f5f5f5;
+      padding: 60px 20px;
+    }
+
+    .detalle-grid {
+      max-width: 1000px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .detalle-card {
+      background: white;
+      padding: 24px;
+      border-radius: 16px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+    }
+
+    .detalle-card h3 {
+      margin-bottom: 10px;
+      font-size: 24px;
+    }
+
+    .detalle-card p {
+      margin-bottom: 0;
+      color: #555;
+      line-height: 1.45;
+    }
+
+    /* CONFIANZA */
+    .confianza {
+      padding: 60px 20px;
+    }
+
+    .confianza-wrap {
+      max-width: 1000px;
+      margin: auto;
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .foto-perfil {
+      width: 260px;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+      border: 4px solid white;
+      flex-shrink: 0;
+    }
+
+    .confianza-text h2 {
+      font-size: 34px;
+      margin-bottom: 16px;
+    }
+
+    .confianza-text p {
+      font-size: 18px;
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+
+    .colegiado {
+      font-size: 18px;
+      color: #777;
+      margin-top: -6px;
+    }
+
+    /* CTA FINAL */
+    .cta {
+      background: #25D366;
+      color: white;
+      text-align: center;
+      padding: 54px 20px;
+    }
+
+    .cta h2 {
+      font-size: 34px;
+      margin-bottom: 14px;
+    }
+
+    .cta a {
+      display: inline-block;
+      margin-top: 10px;
+      background: white;
+      color: #25D366;
+      padding: 15px 25px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1000px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero h1 {
+        font-size: 48px;
+      }
+
+      .subtitle {
+        font-size: 24px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        min-height: 92vh;
+        padding: 0 24px 70px 24px;
+      }
+
+      .hero h1 {
+        font-size: 40px;
+      }
+
+      .subtitle {
+        font-size: 22px;
+      }
+
+      .subline {
+        font-size: 14px;
+      }
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+        font-size: 18px;
+        padding: 16px 20px;
+      }
+
+      .services h2,
+      .problemas h2,
+      .confianza-text h2,
+      .cta h2 {
+        font-size: 30px;
+      }
+
+      .detalle-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .confianza-wrap {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .lista {
+        text-align: left;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 34px;
+      }
+
+      .subtitle {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Arquitecto en el Aljarafe</h1>
+      <div class="subtitle">Certificados, catastro y trámites rápidos</div>
+      <div class="subline">Certificados en 24-48h · Cambio de uso · Licencias · Rehabilitación</div>
+
+      <a class="btn" href="https://wa.me/34617440109?text=Hola,%20quiero%20solicitar%20informaci%C3%B3n">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M19.11 17.23c-.27-.14-1.57-.78-1.81-.87-.24-.09-.42-.14-.6.14-.18.27-.69.87-.85 1.05-.15.18-.31.2-.58.07-.27-.14-1.13-.42-2.15-1.33-.8-.71-1.34-1.58-1.5-1.84-.16-.27-.02-.41.12-.55.12-.12.27-.31.4-.47.13-.16.18-.27.27-.45.09-.18.05-.34-.02-.47-.07-.14-.6-1.45-.82-1.99-.22-.52-.44-.45-.6-.46h-.51c-.18 0-.47.07-.72.34-.24.27-.94.92-.94 2.24 0 1.32.96 2.6 1.09 2.78.14.18 1.88 2.87 4.56 4.03.64.28 1.14.45 1.53.58.64.2 1.22.17 1.68.1.51-.08 1.57-.64 1.79-1.25.22-.61.22-1.14.15-1.25-.07-.11-.25-.18-.52-.32z"></path>
+          <path d="M16.02 3.2C9.04 3.2 3.39 8.84 3.39 15.81c0 2.22.58 4.39 1.68 6.29L3.2 28.8l6.89-1.81a12.56 12.56 0 0 0 5.93 1.51h.01c6.97 0 12.63-5.65 12.63-12.63 0-3.38-1.32-6.56-3.71-8.95A12.56 12.56 0 0 0 16.02 3.2zm0 22.96h-.01a10.36 10.36 0 0 1-5.28-1.45l-.38-.22-4.09 1.07 1.09-3.99-.25-.41a10.29 10.29 0 0 1-1.58-5.49c0-5.69 4.63-10.32 10.33-10.32 2.75 0 5.34 1.07 7.28 3.02a10.24 10.24 0 0 1 3.02 7.29c0 5.69-4.63 10.32-10.33 10.32z"></path>
+        </svg>
+        Solicita presupuesto por WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="services">
+    <h2>Servicios técnicos en el Aljarafe</h2>
+
+    <div class="grid">
+      <div class="card">
+        <div class="icon-box green">📄</div>
+        <h3>Certificados energéticos 24-48h</h3>
+        <p>Entrega rápida.<br>Desde 100€.<br>Registro incluido.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon-box gold">📍</div>
+        <h3>Catastro</h3>
+        <p>Parcelas y errores.<br>Ajuste de superficies.<br>Georreferenciación.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon-box blue">📑</div>
+        <h3>Trámites</h3>
+        <p>Licencias.<br>Declaraciones responsables.<br>Gestión completa.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon-box purple">🏠</div>
+        <h3>Cambio de uso</h3>
+        <p>Local a vivienda.<br>Proyecto técnico.<br>Legalización.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEMAS -->
+  <section class="problemas">
+    <h2>¿Necesitas resolver alguno de estos casos?</h2>
+    <div class="lista">
+      <p>✔ Certificado energético para vender o alquilar</p>
+      <p>✔ Discrepancias con superficies en catastro</p>
+      <p>✔ Convertir un local en vivienda</p>
+      <p>✔ Licencias o declaraciones responsables</p>
+      <p>✔ Informe técnico urgente</p>
+      <p>✔ Proyecto de piscina</p>
+      <p>✔ Planos de estado actual</p>
+    </div>
+    <p><strong>Yo me encargo de todo de forma rápida.</strong></p>
+  </section>
+
+  <!-- DETALLE -->
+  <section class="detalle">
+    <div class="detalle-grid">
+      <div class="detalle-card">
+        <h3>Certificados energéticos</h3>
+        <p>Entrega rápida en el Aljarafe y gestión completa del trámite.</p>
+      </div>
+
+      <div class="detalle-card">
+        <h3>Reformas y rehabilitación</h3>
+        <p>Proyectos técnicos, documentación y legalización de actuaciones.</p>
+      </div>
+
+      <div class="detalle-card">
+        <h3>Cambio de uso</h3>
+        <p>De local a vivienda con estudio de viabilidad y tramitación.</p>
+      </div>
+
+      <div class="detalle-card">
+        <h3>Catastro</h3>
+        <p>Corrección de errores, superficies, parcelas y documentación técnica.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONFIANZA -->
+  <section class="confianza">
+    <div class="confianza-wrap">
+      <img src="Fotos%20de%20Luis.jpg" alt="Luis Barrios Quintana" class="foto-perfil">
+
+      <div class="confianza-text">
+        <h2>Arquitecto en el Aljarafe</h2>
+        <p>Experiencia en certificados, catastro, rehabilitación y gestión administrativa.</p>
+        <p>Atención directa, rápida y sin intermediarios.</p>
+        <p><strong>Luis Barrios Quintana</strong></p>
+        <p class="colegiado">Arquitecto colegiado en el COA de Sevilla</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="cta">
+    <h2>Solicita presupuesto sin compromiso</h2>
+    <a href="https://wa.me/34617440109?text=Hola,%20quiero%20solicitar%20informaci%C3%B3n">Contactar por WhatsApp</a>
+  </section>
+
+</body>
+</html>
